@@ -1,0 +1,685 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Figma Tree Visualization</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 20px; 
+                background: #f5f5f5;
+                overflow-x: auto;
+            }
+            
+            .tree-container {
+                display: flex;
+                justify-content: center;
+                padding: 20px;
+                min-width: 100%;
+            }
+            
+            .tree-node {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+                position: relative;
+            }
+            
+            .node-content {
+                background: white;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                max-width: 200px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .node-info {
+                margin-bottom: 10px;
+            }
+            
+            .node-image {
+                max-width: 150px;
+                max-height: 100px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: block;
+                margin: 5px auto 0;
+            }
+            
+            .no-image {
+                width: 80px;
+                height: 40px;
+                background: #f0f0f0;
+                border: 1px dashed #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+                font-size: 10px;
+                margin: 5px auto 0;
+                border-radius: 4px;
+            }
+            
+            .children-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 30px;
+                position: relative;
+            }
+            
+            /* Connecting lines */
+            .tree-node {
+                position: relative;
+            }
+            
+            /* Vertical line from parent to children */
+            .tree-node > .children-container:before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            .children-container {
+                position: relative;
+            }
+            
+            /* Vertical lines from horizontal line to each child */
+            .children-container > .tree-node:before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            /* For single child, extend vertical line */
+            .children-container .tree-node:only-child:before {
+                height: 30px;
+                top: -30px;
+            }
+            
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Figma Design Tree</h1>
+        <div class="tree-container">
+    <div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>MacBook Pro 14" - 8</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17163.png" class="node-image" alt="MacBook Pro 14" - 8">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Button/Chrome Bar</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports/723:17164.png" class="node-image" alt="Button/Chrome Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Broswer Control Bar</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8027.png" class="node-image" alt="Broswer Control Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Broswer Control Bar BG</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8029.png" class="node-image" alt="Broswer Control Bar BG">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tab & Plus</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8030.png" class="node-image" alt="Tab & Plus">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Browser Controls</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8032.png" class="node-image" alt="Browser Controls">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Toolbar - URL Controls</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8047.png" class="node-image" alt="Toolbar - URL Controls">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>URL Controls BG</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8049.png" class="node-image" alt="URL Controls BG">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Right Locked Icons</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8050.png" class="node-image" alt="Right Locked Icons">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>URL Bar</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8053.png" class="node-image" alt="URL Bar">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Left Locked Icons</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/I723:17164;338:8061.png" class="node-image" alt="Left Locked Icons">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Main</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17165.png" class="node-image" alt="Main">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078612</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17166.png" class="node-image" alt="Frame 1984078612">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Screenshot 2025-05-17 at 1.30.05 AM 1</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports/723:17167.png" class="node-image" alt="Screenshot 2025-05-17 at 1.30.05 AM 1">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080125</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17168.png" class="node-image" alt="Frame 1984080125">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078893</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17170.png" class="node-image" alt="Frame 1984078893">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Chat and Content</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17171.png" class="node-image" alt="Chat and Content">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Chat Area</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17172.png" class="node-image" alt="Chat Area">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Content Wrapper - Assistant</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17173.png" class="node-image" alt="Content Wrapper - Assistant">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080153</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17174.png" class="node-image" alt="Frame 1984080153">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Star</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports/723:17175.png" class="node-image" alt="Star">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Star</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports/723:17176.png" class="node-image" alt="Star">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Star</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports/723:17177.png" class="node-image" alt="Star">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Label</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports/723:17178.png" class="node-image" alt="Label">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Content Wrapper - Assistant</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17179.png" class="node-image" alt="Content Wrapper - Assistant">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Label</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports/723:17181.png" class="node-image" alt="Label">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080126</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17182.png" class="node-image" alt="Frame 1984080126">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>SUGGESTED</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports/723:17183.png" class="node-image" alt="SUGGESTED">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Button</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports/723:17184.png" class="node-image" alt="Button">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Button</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports/723:17185.png" class="node-image" alt="Button">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Input</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17186.png" class="node-image" alt="Input">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Content</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17188.png" class="node-image" alt="Content">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078683</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17199.png" class="node-image" alt="Frame 1984078683">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Section</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17212.png" class="node-image" alt="Section">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tabs Container</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17226.png" class="node-image" alt="Tabs Container">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tabs</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17228.png" class="node-image" alt="Tabs">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>_tabs-tab</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17229.png" class="node-image" alt="_tabs-tab">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Template Tab</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports/723:17230.png" class="node-image" alt="Template Tab">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>badge</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports/723:17231.png" class="node-image" alt="badge">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>_tabs-tab</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17233.png" class="node-image" alt="_tabs-tab">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>_tabs-tab</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17237.png" class="node-image" alt="_tabs-tab">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Order Details Tab</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports/723:17238.png" class="node-image" alt="Order Details Tab">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>badge</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports/723:17239.png" class="node-image" alt="badge">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Spacer</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17241.png" class="node-image" alt="Spacer">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Project/articles dashboard</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17247.png" class="node-image" alt="Project/articles dashboard">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223993</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17248.png" class="node-image" alt="Frame 2147223993">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223988</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17249.png" class="node-image" alt="Frame 2147223988">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223989</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17257.png" class="node-image" alt="Frame 2147223989">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223990</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17265.png" class="node-image" alt="Frame 2147223990">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223991</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17273.png" class="node-image" alt="Frame 2147223991">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223992</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17281.png" class="node-image" alt="Frame 2147223992">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Pointer</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports/723:17324.png" class="node-image" alt="Pointer">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+
+        </div>
+        
+        <script>
+        // Fix horizontal connecting lines after page loads
+        window.addEventListener('load', function() {
+            const containers = document.querySelectorAll('.children-container');
+            
+            containers.forEach(container => {
+                const children = container.querySelectorAll(':scope > .tree-node');
+                
+                if (children.length > 1) {
+                    const firstChild = children[0];
+                    const lastChild = children[children.length - 1];
+                    
+                    const firstRect = firstChild.getBoundingClientRect();
+                    const lastRect = lastChild.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    const leftOffset = firstRect.left + firstRect.width/2 - containerRect.left;
+                    const rightOffset = lastRect.left + lastRect.width/2 - containerRect.left;
+                    
+                    // Create or update horizontal line
+                    const existingLine = container.querySelector('.horizontal-line');
+                    if (existingLine) {
+                        existingLine.remove();
+                    }
+                    
+                    const horizontalLine = document.createElement('div');
+                    horizontalLine.className = 'horizontal-line';
+                    horizontalLine.style.cssText = `
+                        position: absolute;
+                        top: -15px;
+                        left: ${leftOffset}px;
+                        width: ${rightOffset - leftOffset}px;
+                        height: 2px;
+                        background: #666;
+                        z-index: 1;
+                    `;
+                    
+                    container.appendChild(horizontalLine);
+                }
+            });
+        });
+        </script>
+    </body>
+    </html>
+    

@@ -1,0 +1,391 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Figma Tree Visualization</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 0;
+                padding: 20px;
+                background: #f5f5f5;
+                overflow-x: auto;
+                overflow-y: auto;
+                min-height: 100vh;
+            }
+            
+            .tree-container {
+                display: flex;
+                justify-content: center;
+                padding: 50px;
+                min-width: max-content;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .tree-node {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+                position: relative;
+            }
+            
+            .node-content {
+                background: white;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                max-width: 200px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .node-info {
+                margin-bottom: 10px;
+            }
+            
+            .node-image {
+                max-width: 150px;
+                max-height: 100px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: block;
+                margin: 5px auto 0;
+            }
+            
+            .no-image {
+                width: 80px;
+                height: 40px;
+                background: #f0f0f0;
+                border: 1px dashed #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+                font-size: 10px;
+                margin: 5px auto 0;
+                border-radius: 4px;
+            }
+            
+            .children-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 30px;
+                position: relative;
+            }
+            
+            /* Connecting lines */
+            .tree-node {
+                position: relative;
+            }
+            
+            /* Vertical line from parent to children */
+            .tree-node > .children-container:before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            .children-container {
+                position: relative;
+            }
+            
+            /* Vertical lines from horizontal line to each child */
+            .children-container > .tree-node:before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            /* For single child, extend vertical line */
+            .children-container .tree-node:only-child:before {
+                height: 30px;
+                top: -30px;
+            }
+            
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            
+            .scroll-wrapper {
+                width: 100%;
+                height: calc(100vh - 100px);
+                overflow: auto;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Figma Design Tree</h1>
+        <div class="tree-container">
+    <div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Non-Capex</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/834:30627.png" class="node-image" alt="Non-Capex">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Sum</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5256.png" class="node-image" alt="Sum">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 308</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5257.png" class="node-image" alt="Frame 308">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Graphs</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5260.png" class="node-image" alt="Graphs">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 314</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5262.png" class="node-image" alt="Frame 314">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>LF3 Waterfall Chart</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5263.png" class="node-image" alt="LF3 Waterfall Chart">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Table - Dept</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5264.png" class="node-image" alt="Table - Dept">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Top Portion</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5265.png" class="node-image" alt="Top Portion">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Chrome Bar</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5266.png" class="node-image" alt="Chrome Bar">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Navigation Bar</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5267.png" class="node-image" alt="Navigation Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 5</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5267;20:2249.png" class="node-image" alt="Frame 5">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 4</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5267;20:2246.png" class="node-image" alt="Frame 4">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Divider</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5268.png" class="node-image" alt="Divider">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Title</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5269.png" class="node-image" alt="Title">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Filters Bar</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5270.png" class="node-image" alt="Filters Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Field Text</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5271.png" class="node-image" alt="Field Text">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Field Text</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5272.png" class="node-image" alt="Field Text">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Field Text for Non capex</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5273.png" class="node-image" alt="Field Text for Non capex">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Field Text</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5274.png" class="node-image" alt="Field Text">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Field Text</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5275.png" class="node-image" alt="Field Text">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>only lf1</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Non-Capex_parallel/I834:30627;107:5276.png" class="node-image" alt="only lf1">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+
+        </div>
+        
+        <script>
+        // Fix horizontal connecting lines after page loads
+        window.addEventListener('load', function() {
+            const containers = document.querySelectorAll('.children-container');
+            
+            containers.forEach(container => {
+                const children = container.querySelectorAll(':scope > .tree-node');
+                
+                if (children.length > 1) {
+                    const firstChild = children[0];
+                    const lastChild = children[children.length - 1];
+                    
+                    const firstRect = firstChild.getBoundingClientRect();
+                    const lastRect = lastChild.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    const leftOffset = firstRect.left + firstRect.width/2 - containerRect.left;
+                    const rightOffset = lastRect.left + lastRect.width/2 - containerRect.left;
+                    
+                    // Create or update horizontal line
+                    const existingLine = container.querySelector('.horizontal-line');
+                    if (existingLine) {
+                        existingLine.remove();
+                    }
+                    
+                    const horizontalLine = document.createElement('div');
+                    horizontalLine.className = 'horizontal-line';
+                    horizontalLine.style.cssText = `
+                        position: absolute;
+                        top: -15px;
+                        left: ${leftOffset}px;
+                        width: ${rightOffset - leftOffset}px;
+                        height: 2px;
+                        background: #666;
+                        z-index: 1;
+                    `;
+                    
+                    container.appendChild(horizontalLine);
+                }
+            });
+        });
+        </script>
+    </body>
+    </html>
+    

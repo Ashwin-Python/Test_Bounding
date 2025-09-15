@@ -1,0 +1,571 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Figma Tree Visualization</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 0;
+                padding: 20px;
+                background: #f5f5f5;
+                overflow-x: auto;
+                overflow-y: auto;
+                min-height: 100vh;
+            }
+            
+            .tree-container {
+                display: flex;
+                justify-content: center;
+                padding: 50px;
+                min-width: max-content;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .tree-node {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+                position: relative;
+            }
+            
+            .node-content {
+                background: white;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                max-width: 200px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .node-info {
+                margin-bottom: 10px;
+            }
+            
+            .node-image {
+                max-width: 150px;
+                max-height: 100px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: block;
+                margin: 5px auto 0;
+            }
+            
+            .no-image {
+                width: 80px;
+                height: 40px;
+                background: #f0f0f0;
+                border: 1px dashed #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+                font-size: 10px;
+                margin: 5px auto 0;
+                border-radius: 4px;
+            }
+            
+            .children-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 30px;
+                position: relative;
+            }
+            
+            /* Connecting lines */
+            .tree-node {
+                position: relative;
+            }
+            
+            /* Vertical line from parent to children */
+            .tree-node > .children-container:before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            .children-container {
+                position: relative;
+            }
+            
+            /* Vertical lines from horizontal line to each child */
+            .children-container > .tree-node:before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            /* For single child, extend vertical line */
+            .children-container .tree-node:only-child:before {
+                height: 30px;
+                top: -30px;
+            }
+            
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            
+            .scroll-wrapper {
+                width: 100%;
+                height: calc(100vh - 100px);
+                overflow: auto;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Figma Design Tree</h1>
+        <div class="tree-container">
+    <div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>MacBook Pro 14</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19339.png" class="node-image" alt="MacBook Pro 14">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Button/Chrome Bar</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19340.png" class="node-image" alt="Button/Chrome Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Broswer Control Bar</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8027.png" class="node-image" alt="Broswer Control Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Broswer Control Bar BG</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8029.png" class="node-image" alt="Broswer Control Bar BG">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tab & Plus</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8030.png" class="node-image" alt="Tab & Plus">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Browser Tab / With Plus</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8031.png" class="node-image" alt="Browser Tab / With Plus">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Browser Controls</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8032.png" class="node-image" alt="Browser Controls">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Toolbar - URL Controls</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8047.png" class="node-image" alt="Toolbar - URL Controls">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>URL Controls BG</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8049.png" class="node-image" alt="URL Controls BG">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Right Locked Icons</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8050.png" class="node-image" alt="Right Locked Icons">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>URL Bar</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8053.png" class="node-image" alt="URL Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>URL Fill BG</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8054.png" class="node-image" alt="URL Fill BG">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Icon - Favorite</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8055.png" class="node-image" alt="Icon - Favorite">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>URL Text</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8056.png" class="node-image" alt="URL Text">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Icon - Secure</strong><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8060.png" class="node-image" alt="Icon - Secure">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Left Locked Icons</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/I872:19340;338:8061.png" class="node-image" alt="Left Locked Icons">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Main</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19341.png" class="node-image" alt="Main">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078612</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19342.png" class="node-image" alt="Frame 1984078612">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Screenshot 2025-05-17 at 1.30.05 AM 1</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19343.png" class="node-image" alt="Screenshot 2025-05-17 at 1.30.05 AM 1">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080125</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19344.png" class="node-image" alt="Frame 1984080125">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078893</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19346.png" class="node-image" alt="Frame 1984078893">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Chat and Content</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19347.png" class="node-image" alt="Chat and Content">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Chat Area</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19348.png" class="node-image" alt="Chat Area">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Content Wrapper - Assistant</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19349.png" class="node-image" alt="Content Wrapper - Assistant">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Content Wrapper - Assistant</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19355.png" class="node-image" alt="Content Wrapper - Assistant">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080126</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19358.png" class="node-image" alt="Frame 1984080126">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Input</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19362.png" class="node-image" alt="Input">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Section</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19388.png" class="node-image" alt="Section">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tabs Container</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19402.png" class="node-image" alt="Tabs Container">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tabs</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19404.png" class="node-image" alt="Tabs">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Spacer</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19417.png" class="node-image" alt="Spacer">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Project/articles dashboard</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19423.png" class="node-image" alt="Project/articles dashboard">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223993</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19424.png" class="node-image" alt="Frame 2147223993">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223988</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19425.png" class="node-image" alt="Frame 2147223988">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223989</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19433.png" class="node-image" alt="Frame 2147223989">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223990</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19441.png" class="node-image" alt="Frame 2147223990">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223991</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19449.png" class="node-image" alt="Frame 2147223991">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223992</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19457.png" class="node-image" alt="Frame 2147223992">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Pointer</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_enhanced_parallel/872:19500.png" class="node-image" alt="Pointer">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+
+        </div>
+        
+        <script>
+        // Fix horizontal connecting lines after page loads
+        window.addEventListener('load', function() {
+            const containers = document.querySelectorAll('.children-container');
+            
+            containers.forEach(container => {
+                const children = container.querySelectorAll(':scope > .tree-node');
+                
+                if (children.length > 1) {
+                    const firstChild = children[0];
+                    const lastChild = children[children.length - 1];
+                    
+                    const firstRect = firstChild.getBoundingClientRect();
+                    const lastRect = lastChild.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    const leftOffset = firstRect.left + firstRect.width/2 - containerRect.left;
+                    const rightOffset = lastRect.left + lastRect.width/2 - containerRect.left;
+                    
+                    // Create or update horizontal line
+                    const existingLine = container.querySelector('.horizontal-line');
+                    if (existingLine) {
+                        existingLine.remove();
+                    }
+                    
+                    const horizontalLine = document.createElement('div');
+                    horizontalLine.className = 'horizontal-line';
+                    horizontalLine.style.cssText = `
+                        position: absolute;
+                        top: -15px;
+                        left: ${leftOffset}px;
+                        width: ${rightOffset - leftOffset}px;
+                        height: 2px;
+                        background: #666;
+                        z-index: 1;
+                    `;
+                    
+                    container.appendChild(horizontalLine);
+                }
+            });
+        });
+        </script>
+    </body>
+    </html>
+    

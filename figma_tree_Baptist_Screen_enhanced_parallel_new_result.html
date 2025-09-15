@@ -1,0 +1,588 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Figma Tree Visualization</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 0;
+                padding: 20px;
+                background: #f5f5f5;
+                overflow-x: auto;
+                overflow-y: auto;
+                min-height: 100vh;
+            }
+            
+            .tree-container {
+                display: flex;
+                justify-content: center;
+                padding: 50px;
+                min-width: max-content;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .tree-node {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+                position: relative;
+            }
+            
+            .node-content {
+                background: white;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                max-width: 200px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .node-info {
+                margin-bottom: 10px;
+            }
+            
+            .node-image {
+                max-width: 150px;
+                max-height: 100px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: block;
+                margin: 5px auto 0;
+            }
+            
+            .no-image {
+                width: 80px;
+                height: 40px;
+                background: #f0f0f0;
+                border: 1px dashed #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+                font-size: 10px;
+                margin: 5px auto 0;
+                border-radius: 4px;
+            }
+            
+            .children-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 30px;
+                position: relative;
+            }
+            
+            /* Connecting lines */
+            .tree-node {
+                position: relative;
+            }
+            
+            /* Vertical line from parent to children */
+            .tree-node > .children-container:before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            .children-container {
+                position: relative;
+            }
+            
+            /* Vertical lines from horizontal line to each child */
+            .children-container > .tree-node:before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            /* For single child, extend vertical line */
+            .children-container .tree-node:only-child:before {
+                height: 30px;
+                top: -30px;
+            }
+            
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            
+            .scroll-wrapper {
+                width: 100%;
+                height: calc(100vh - 100px);
+                overflow: auto;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Figma Design Tree</h1>
+        <div class="tree-container">
+    <div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Baptist_Screen</strong><br>
+      <small>ID: 834:15596</small><br>
+      <small>Sanitized Id: 834_15596</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15596.png" class="node-image" alt="Baptist_Screen">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Chrome Bar</strong><br>
+      <small>ID: 834:15597</small><br>
+      <small>Sanitized Id: 834_15597</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15597.png" class="node-image" alt="Chrome Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Broswer Control Bar</strong><br>
+      <small>ID: 834:15598</small><br>
+      <small>Sanitized Id: 834_15598</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15598.png" class="node-image" alt="Broswer Control Bar">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Broswer Control Bar BG</strong><br>
+      <small>ID: I834:15598;155:5845</small><br>
+      <small>Sanitized Id: I834_15598_155_5845</small><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15598_155_5845.png" class="node-image" alt="Broswer Control Bar BG">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tab & Plus</strong><br>
+      <small>ID: I834:15598;155:5846</small><br>
+      <small>Sanitized Id: I834_15598_155_5846</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15598_155_5846.png" class="node-image" alt="Tab & Plus">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Browser Controls</strong><br>
+      <small>ID: I834:15598;155:5848</small><br>
+      <small>Sanitized Id: I834_15598_155_5848</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15598_155_5848.png" class="node-image" alt="Browser Controls">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Option - Expand</strong><br>
+      <small>ID: I834:15598;155:5849</small><br>
+      <small>Sanitized Id: I834_15598_155_5849</small><br>
+      <small>ELLIPSE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15598_155_5849.png" class="node-image" alt="Option - Expand">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Option - Minimize</strong><br>
+      <small>ID: I834:15598;155:5850</small><br>
+      <small>Sanitized Id: I834_15598_155_5850</small><br>
+      <small>ELLIPSE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15598_155_5850.png" class="node-image" alt="Option - Minimize">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Option - Close</strong><br>
+      <small>ID: I834:15598;155:5851</small><br>
+      <small>Sanitized Id: I834_15598_155_5851</small><br>
+      <small>ELLIPSE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15598_155_5851.png" class="node-image" alt="Option - Close">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Toolbar - URL Controls</strong><br>
+      <small>ID: 834:15599</small><br>
+      <small>Sanitized Id: 834_15599</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15599.png" class="node-image" alt="Toolbar - URL Controls">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>URL Controls BG</strong><br>
+      <small>ID: I834:15599;155:5826</small><br>
+      <small>Sanitized Id: I834_15599_155_5826</small><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15599_155_5826.png" class="node-image" alt="URL Controls BG">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Right Locked Icons</strong><br>
+      <small>ID: I834:15599;155:5827</small><br>
+      <small>Sanitized Id: I834_15599_155_5827</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15599_155_5827.png" class="node-image" alt="Right Locked Icons">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>URL Bar</strong><br>
+      <small>ID: I834:15599;155:5830</small><br>
+      <small>Sanitized Id: I834_15599_155_5830</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15599_155_5830.png" class="node-image" alt="URL Bar">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Left Locked Icons</strong><br>
+      <small>ID: I834:15599;155:5838</small><br>
+      <small>Sanitized Id: I834_15599_155_5838</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15599_155_5838.png" class="node-image" alt="Left Locked Icons">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Main Frame</strong><br>
+      <small>ID: 834:15600</small><br>
+      <small>Sanitized Id: 834_15600</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15600.png" class="node-image" alt="Main Frame">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>navigation</strong><br>
+      <small>ID: 834:15601</small><br>
+      <small>Sanitized Id: 834_15601</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15601.png" class="node-image" alt="navigation">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>logo frame</strong><br>
+      <small>ID: I834:15601;17548:22988</small><br>
+      <small>Sanitized Id: I834_15601_17548_22988</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15601_17548_22988.png" class="node-image" alt="logo frame">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 549</strong><br>
+      <small>ID: I834:15601;17548:30411</small><br>
+      <small>Sanitized Id: I834_15601_17548_30411</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15601_17548_30411.png" class="node-image" alt="Frame 549">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>buttons</strong><br>
+      <small>ID: I834:15601;17548:22992</small><br>
+      <small>Sanitized Id: I834_15601_17548_22992</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15601_17548_22992.png" class="node-image" alt="buttons">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>ACC_button</strong><br>
+      <small>ID: I834:15601;17548:22995</small><br>
+      <small>Sanitized Id: I834_15601_17548_22995</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15601_17548_22995.png" class="node-image" alt="ACC_button">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>ACC_button</strong><br>
+      <small>ID: I834:15601;18611:2650</small><br>
+      <small>Sanitized Id: I834_15601_18611_2650</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15601_18611_2650.png" class="node-image" alt="ACC_button">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>ACC_button</strong><br>
+      <small>ID: I834:15601;17548:22996</small><br>
+      <small>Sanitized Id: I834_15601_17548_22996</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/I834_15601_17548_22996.png" class="node-image" alt="ACC_button">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Body</strong><br>
+      <small>ID: 834:15602</small><br>
+      <small>Sanitized Id: 834_15602</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15602.png" class="node-image" alt="Body">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078918</strong><br>
+      <small>ID: 834:15603</small><br>
+      <small>Sanitized Id: 834_15603</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15603.png" class="node-image" alt="Frame 1984078918">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>menu/desktop</strong><br>
+      <small>ID: 834:15604</small><br>
+      <small>Sanitized Id: 834_15604</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15604.png" class="node-image" alt="menu/desktop">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080199</strong><br>
+      <small>ID: 834:15605</small><br>
+      <small>Sanitized Id: 834_15605</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15605.png" class="node-image" alt="Frame 1984080199">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>01 - Web Mammo 1</strong><br>
+      <small>ID: 834:15606</small><br>
+      <small>Sanitized Id: 834_15606</small><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15606.png" class="node-image" alt="01 - Web Mammo 1">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>appointments</strong><br>
+      <small>ID: 834:15607</small><br>
+      <small>Sanitized Id: 834_15607</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15607.png" class="node-image" alt="appointments">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>chat</strong><br>
+      <small>ID: 834:15655</small><br>
+      <small>Sanitized Id: 834_15655</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15655.png" class="node-image" alt="chat">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080131</strong><br>
+      <small>ID: 834:15658</small><br>
+      <small>Sanitized Id: 834_15658</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15658.png" class="node-image" alt="Frame 1984080131">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>navigation mobile</strong><br>
+      <small>ID: 834:15659</small><br>
+      <small>Sanitized Id: 834_15659</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15659.png" class="node-image" alt="navigation mobile">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Content section</strong><br>
+      <small>ID: 834:15692</small><br>
+      <small>Sanitized Id: 834_15692</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15692.png" class="node-image" alt="Content section">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Input_Fields (both platforms)</strong><br>
+      <small>ID: 834:15696</small><br>
+      <small>Sanitized Id: 834_15696</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15696.png" class="node-image" alt="Input_Fields (both platforms)">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Speaker</strong><br>
+      <small>ID: 834:15697</small><br>
+      <small>Sanitized Id: 834_15697</small><br>
+      <small>INSTANCE</small>
+    </div>
+    <img src="./figma_exports_Baptist_Screen_enhanced_parallel_new/834_15697.png" class="node-image" alt="Speaker">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+
+        </div>
+        
+        <script>
+        // Fix horizontal connecting lines after page loads
+        window.addEventListener('load', function() {
+            const containers = document.querySelectorAll('.children-container');
+            
+            containers.forEach(container => {
+                const children = container.querySelectorAll(':scope > .tree-node');
+                
+                if (children.length > 1) {
+                    const firstChild = children[0];
+                    const lastChild = children[children.length - 1];
+                    
+                    const firstRect = firstChild.getBoundingClientRect();
+                    const lastRect = lastChild.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    const leftOffset = firstRect.left + firstRect.width/2 - containerRect.left;
+                    const rightOffset = lastRect.left + lastRect.width/2 - containerRect.left;
+                    
+                    // Create or update horizontal line
+                    const existingLine = container.querySelector('.horizontal-line');
+                    if (existingLine) {
+                        existingLine.remove();
+                    }
+                    
+                    const horizontalLine = document.createElement('div');
+                    horizontalLine.className = 'horizontal-line';
+                    horizontalLine.style.cssText = `
+                        position: absolute;
+                        top: -15px;
+                        left: ${leftOffset}px;
+                        width: ${rightOffset - leftOffset}px;
+                        height: 2px;
+                        background: #666;
+                        z-index: 1;
+                    `;
+                    
+                    container.appendChild(horizontalLine);
+                }
+            });
+        });
+        </script>
+    </body>
+    </html>
+    

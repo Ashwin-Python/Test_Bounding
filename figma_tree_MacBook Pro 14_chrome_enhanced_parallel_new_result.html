@@ -1,0 +1,461 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Figma Tree Visualization</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 0;
+                padding: 20px;
+                background: #f5f5f5;
+                overflow-x: auto;
+                overflow-y: auto;
+                min-height: 100vh;
+            }
+            
+            .tree-container {
+                display: flex;
+                justify-content: center;
+                padding: 50px;
+                min-width: max-content;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .tree-node {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+                position: relative;
+            }
+            
+            .node-content {
+                background: white;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                max-width: 200px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .node-info {
+                margin-bottom: 10px;
+            }
+            
+            .node-image {
+                max-width: 150px;
+                max-height: 100px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: block;
+                margin: 5px auto 0;
+            }
+            
+            .no-image {
+                width: 80px;
+                height: 40px;
+                background: #f0f0f0;
+                border: 1px dashed #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+                font-size: 10px;
+                margin: 5px auto 0;
+                border-radius: 4px;
+            }
+            
+            .children-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 30px;
+                position: relative;
+            }
+            
+            /* Connecting lines */
+            .tree-node {
+                position: relative;
+            }
+            
+            /* Vertical line from parent to children */
+            .tree-node > .children-container:before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            .children-container {
+                position: relative;
+            }
+            
+            /* Vertical lines from horizontal line to each child */
+            .children-container > .tree-node:before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            /* For single child, extend vertical line */
+            .children-container .tree-node:only-child:before {
+                height: 30px;
+                top: -30px;
+            }
+            
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            
+            .scroll-wrapper {
+                width: 100%;
+                height: calc(100vh - 100px);
+                overflow: auto;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Figma Design Tree</h1>
+        <div class="tree-container">
+    <div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>MacBook Pro 14</strong><br>
+      <small>ID: 872:19339</small><br>
+      <small>Sanitized Id: 872_19339</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19339.png" class="node-image" alt="MacBook Pro 14">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078612</strong><br>
+      <small>ID: 872:19342</small><br>
+      <small>Sanitized Id: 872_19342</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19342.png" class="node-image" alt="Frame 1984078612">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Screenshot 2025-05-17 at 1.30.05 AM 1</strong><br>
+      <small>ID: 872:19343</small><br>
+      <small>Sanitized Id: 872_19343</small><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19343.png" class="node-image" alt="Screenshot 2025-05-17 at 1.30.05 AM 1">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080125</strong><br>
+      <small>ID: 872:19344</small><br>
+      <small>Sanitized Id: 872_19344</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19344.png" class="node-image" alt="Frame 1984080125">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078893</strong><br>
+      <small>ID: 872:19346</small><br>
+      <small>Sanitized Id: 872_19346</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19346.png" class="node-image" alt="Frame 1984078893">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Chat and Content</strong><br>
+      <small>ID: 872:19347</small><br>
+      <small>Sanitized Id: 872_19347</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19347.png" class="node-image" alt="Chat and Content">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Chat Area</strong><br>
+      <small>ID: 872:19348</small><br>
+      <small>Sanitized Id: 872_19348</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19348.png" class="node-image" alt="Chat Area">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Content Wrapper - Assistant</strong><br>
+      <small>ID: 872:19349</small><br>
+      <small>Sanitized Id: 872_19349</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19349.png" class="node-image" alt="Content Wrapper - Assistant">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Content Wrapper - Assistant</strong><br>
+      <small>ID: 872:19355</small><br>
+      <small>Sanitized Id: 872_19355</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19355.png" class="node-image" alt="Content Wrapper - Assistant">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984080126</strong><br>
+      <small>ID: 872:19358</small><br>
+      <small>Sanitized Id: 872_19358</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19358.png" class="node-image" alt="Frame 1984080126">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Input</strong><br>
+      <small>ID: 872:19362</small><br>
+      <small>Sanitized Id: 872_19362</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19362.png" class="node-image" alt="Input">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Section</strong><br>
+      <small>ID: 872:19388</small><br>
+      <small>Sanitized Id: 872_19388</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19388.png" class="node-image" alt="Section">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tabs Container</strong><br>
+      <small>ID: 872:19402</small><br>
+      <small>Sanitized Id: 872_19402</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19402.png" class="node-image" alt="Tabs Container">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tabs</strong><br>
+      <small>ID: 872:19404</small><br>
+      <small>Sanitized Id: 872_19404</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19404.png" class="node-image" alt="Tabs">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Spacer</strong><br>
+      <small>ID: 872:19417</small><br>
+      <small>Sanitized Id: 872_19417</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19417.png" class="node-image" alt="Spacer">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Project/articles dashboard</strong><br>
+      <small>ID: 872:19423</small><br>
+      <small>Sanitized Id: 872_19423</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19423.png" class="node-image" alt="Project/articles dashboard">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223993</strong><br>
+      <small>ID: 872:19424</small><br>
+      <small>Sanitized Id: 872_19424</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19424.png" class="node-image" alt="Frame 2147223993">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223988</strong><br>
+      <small>ID: 872:19425</small><br>
+      <small>Sanitized Id: 872_19425</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19425.png" class="node-image" alt="Frame 2147223988">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223989</strong><br>
+      <small>ID: 872:19433</small><br>
+      <small>Sanitized Id: 872_19433</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19433.png" class="node-image" alt="Frame 2147223989">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223990</strong><br>
+      <small>ID: 872:19441</small><br>
+      <small>Sanitized Id: 872_19441</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19441.png" class="node-image" alt="Frame 2147223990">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223991</strong><br>
+      <small>ID: 872:19449</small><br>
+      <small>Sanitized Id: 872_19449</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19449.png" class="node-image" alt="Frame 2147223991">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2147223992</strong><br>
+      <small>ID: 872:19457</small><br>
+      <small>Sanitized Id: 872_19457</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19457.png" class="node-image" alt="Frame 2147223992">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Pointer</strong><br>
+      <small>ID: 872:19500</small><br>
+      <small>Sanitized Id: 872_19500</small><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_MacBook Pro 14_chrome_enhanced_parallel_new/872_19500.png" class="node-image" alt="Pointer">
+  </div>
+</div>
+  </div>
+</div>
+
+        </div>
+        
+        <script>
+        // Fix horizontal connecting lines after page loads
+        window.addEventListener('load', function() {
+            const containers = document.querySelectorAll('.children-container');
+            
+            containers.forEach(container => {
+                const children = container.querySelectorAll(':scope > .tree-node');
+                
+                if (children.length > 1) {
+                    const firstChild = children[0];
+                    const lastChild = children[children.length - 1];
+                    
+                    const firstRect = firstChild.getBoundingClientRect();
+                    const lastRect = lastChild.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    const leftOffset = firstRect.left + firstRect.width/2 - containerRect.left;
+                    const rightOffset = lastRect.left + lastRect.width/2 - containerRect.left;
+                    
+                    // Create or update horizontal line
+                    const existingLine = container.querySelector('.horizontal-line');
+                    if (existingLine) {
+                        existingLine.remove();
+                    }
+                    
+                    const horizontalLine = document.createElement('div');
+                    horizontalLine.className = 'horizontal-line';
+                    horizontalLine.style.cssText = `
+                        position: absolute;
+                        top: -15px;
+                        left: ${leftOffset}px;
+                        width: ${rightOffset - leftOffset}px;
+                        height: 2px;
+                        background: #666;
+                        z-index: 1;
+                    `;
+                    
+                    container.appendChild(horizontalLine);
+                }
+            });
+        });
+        </script>
+    </body>
+    </html>
+    

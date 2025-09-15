@@ -1,0 +1,916 @@
+
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Figma Tree Visualization</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 0;
+                padding: 20px;
+                background: #f5f5f5;
+                overflow-x: auto;
+                overflow-y: auto;
+                min-height: 100vh;
+            }
+            
+            .tree-container {
+                display: flex;
+                justify-content: center;
+                padding: 50px;
+                min-width: max-content;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .tree-node {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+                position: relative;
+            }
+            
+            .node-content {
+                background: white;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                max-width: 200px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .node-info {
+                margin-bottom: 10px;
+            }
+            
+            .node-image {
+                max-width: 150px;
+                max-height: 100px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: block;
+                margin: 5px auto 0;
+            }
+            
+            .no-image {
+                width: 80px;
+                height: 40px;
+                background: #f0f0f0;
+                border: 1px dashed #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+                font-size: 10px;
+                margin: 5px auto 0;
+                border-radius: 4px;
+            }
+            
+            .children-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 30px;
+                position: relative;
+            }
+            
+            /* Connecting lines */
+            .tree-node {
+                position: relative;
+            }
+            
+            /* Vertical line from parent to children */
+            .tree-node > .children-container:before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            .children-container {
+                position: relative;
+            }
+            
+            /* Vertical lines from horizontal line to each child */
+            .children-container > .tree-node:before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            /* For single child, extend vertical line */
+            .children-container .tree-node:only-child:before {
+                height: 30px;
+                top: -30px;
+            }
+            
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            
+            .scroll-wrapper {
+                width: 100%;
+                height: calc(100vh - 100px);
+                overflow: auto;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Figma Design Tree</h1>
+        <div class="tree-container">
+    <div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>appmod_s1</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31566.png" class="node-image" alt="appmod_s1">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 48096289</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31572.png" class="node-image" alt="Frame 48096289">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 427318303</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31751.png" class="node-image" alt="Frame 427318303">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Navigation Tabs</strong><br>
+      <small>GROUP</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31752.png" class="node-image" alt="Navigation Tabs">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Module Conversion</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31754.png" class="node-image" alt="Module Conversion">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078019</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31755.png" class="node-image" alt="Frame 1984078019">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>techo.zip</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31756.png" class="node-image" alt="techo.zip">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078042</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31757.png" class="node-image" alt="Frame 1984078042">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078032</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31773.png" class="node-image" alt="Frame 1984078032">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078029</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31774.png" class="node-image" alt="Frame 1984078029">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078033</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31794.png" class="node-image" alt="Frame 1984078033">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078046</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31795.png" class="node-image" alt="Frame 1984078046">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078010</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31796.png" class="node-image" alt="Frame 1984078010">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078025</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31800.png" class="node-image" alt="Frame 1984078025">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078027</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31804.png" class="node-image" alt="Frame 1984078027">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078028</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31808.png" class="node-image" alt="Frame 1984078028">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078045</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31812.png" class="node-image" alt="Frame 1984078045">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078030</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31813.png" class="node-image" alt="Frame 1984078030">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078031</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31833.png" class="node-image" alt="Frame 1984078031">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078034</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31841.png" class="node-image" alt="Frame 1984078034">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078031</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31842.png" class="node-image" alt="Frame 1984078031">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078010</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31846.png" class="node-image" alt="Frame 1984078010">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078025</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31850.png" class="node-image" alt="Frame 1984078025">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078027</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31854.png" class="node-image" alt="Frame 1984078027">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078028</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31858.png" class="node-image" alt="Frame 1984078028">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078030</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31862.png" class="node-image" alt="Frame 1984078030">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078037</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31865.png" class="node-image" alt="Frame 1984078037">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078031</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31866.png" class="node-image" alt="Frame 1984078031">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078010</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31867.png" class="node-image" alt="Frame 1984078010">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078025</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31871.png" class="node-image" alt="Frame 1984078025">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078027</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31875.png" class="node-image" alt="Frame 1984078027">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078028</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31879.png" class="node-image" alt="Frame 1984078028">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078030</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31883.png" class="node-image" alt="Frame 1984078030">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078030</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31886.png" class="node-image" alt="Frame 1984078030">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078031</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31907.png" class="node-image" alt="Frame 1984078031">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078032</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31931.png" class="node-image" alt="Frame 1984078032">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078035</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31952.png" class="node-image" alt="Frame 1984078035">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078036</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31973.png" class="node-image" alt="Frame 1984078036">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078038</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31997.png" class="node-image" alt="Frame 1984078038">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078032</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31998.png" class="node-image" alt="Frame 1984078032">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078010</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:31999.png" class="node-image" alt="Frame 1984078010">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078025</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32003.png" class="node-image" alt="Frame 1984078025">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078027</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32007.png" class="node-image" alt="Frame 1984078027">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078028</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32011.png" class="node-image" alt="Frame 1984078028">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078030</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32015.png" class="node-image" alt="Frame 1984078030">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078039</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32018.png" class="node-image" alt="Frame 1984078039">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078046</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32019.png" class="node-image" alt="Frame 1984078046">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078010</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32020.png" class="node-image" alt="Frame 1984078010">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078025</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32024.png" class="node-image" alt="Frame 1984078025">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078027</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32028.png" class="node-image" alt="Frame 1984078027">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078028</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32032.png" class="node-image" alt="Frame 1984078028">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078030</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32036.png" class="node-image" alt="Frame 1984078030">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078040</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32039.png" class="node-image" alt="Frame 1984078040">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078032</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32040.png" class="node-image" alt="Frame 1984078032">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078010</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32044.png" class="node-image" alt="Frame 1984078010">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078025</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32048.png" class="node-image" alt="Frame 1984078025">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078027</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32052.png" class="node-image" alt="Frame 1984078027">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078028</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32056.png" class="node-image" alt="Frame 1984078028">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078030</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32060.png" class="node-image" alt="Frame 1984078030">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078041</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32063.png" class="node-image" alt="Frame 1984078041">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078042</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32084.png" class="node-image" alt="Frame 1984078042">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078043</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32108.png" class="node-image" alt="Frame 1984078043">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078010</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32109.png" class="node-image" alt="Frame 1984078010">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078025</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32113.png" class="node-image" alt="Frame 1984078025">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078027</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32117.png" class="node-image" alt="Frame 1984078027">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078028</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32121.png" class="node-image" alt="Frame 1984078028">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078030</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32125.png" class="node-image" alt="Frame 1984078030">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078043</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32128.png" class="node-image" alt="Frame 1984078043">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078044</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32129.png" class="node-image" alt="Frame 1984078044">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 427318300</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32130.png" class="node-image" alt="Frame 427318300">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 427318301</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32133.png" class="node-image" alt="Frame 427318301">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078075</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32139.png" class="node-image" alt="Frame 1984078075">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078050</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32140.png" class="node-image" alt="Frame 1984078050">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Component 340</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32160.png" class="node-image" alt="Component 340">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 427318215</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32167.png" class="node-image" alt="Frame 427318215">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 427318212</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32191.png" class="node-image" alt="Frame 427318212">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1984078076</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_appmod_s1_parallel/834:32196.png" class="node-image" alt="Frame 1984078076">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+
+        </div>
+        
+        <script>
+        // Fix horizontal connecting lines after page loads
+        window.addEventListener('load', function() {
+            const containers = document.querySelectorAll('.children-container');
+            
+            containers.forEach(container => {
+                const children = container.querySelectorAll(':scope > .tree-node');
+                
+                if (children.length > 1) {
+                    const firstChild = children[0];
+                    const lastChild = children[children.length - 1];
+                    
+                    const firstRect = firstChild.getBoundingClientRect();
+                    const lastRect = lastChild.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    const leftOffset = firstRect.left + firstRect.width/2 - containerRect.left;
+                    const rightOffset = lastRect.left + lastRect.width/2 - containerRect.left;
+                    
+                    // Create or update horizontal line
+                    const existingLine = container.querySelector('.horizontal-line');
+                    if (existingLine) {
+                        existingLine.remove();
+                    }
+                    
+                    const horizontalLine = document.createElement('div');
+                    horizontalLine.className = 'horizontal-line';
+                    horizontalLine.style.cssText = `
+                        position: absolute;
+                        top: -15px;
+                        left: ${leftOffset}px;
+                        width: ${rightOffset - leftOffset}px;
+                        height: 2px;
+                        background: #666;
+                        z-index: 1;
+                    `;
+                    
+                    container.appendChild(horizontalLine);
+                }
+            });
+        });
+        </script>
+    </body>
+    </html>
+    

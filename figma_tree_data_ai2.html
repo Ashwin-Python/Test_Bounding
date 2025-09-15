@@ -1,0 +1,845 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Figma Tree Visualization</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 0;
+                padding: 20px;
+                background: #f5f5f5;
+                overflow-x: auto;
+                overflow-y: auto;
+                min-height: 100vh;
+            }
+            
+            .tree-container {
+                display: flex;
+                justify-content: center;
+                padding: 50px;
+                min-width: max-content;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .tree-node {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px;
+                position: relative;
+            }
+            
+            .node-content {
+                background: white;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                max-width: 200px;
+                text-align: center;
+                position: relative;
+                z-index: 2;
+            }
+            
+            .node-info {
+                margin-bottom: 10px;
+            }
+            
+            .node-image {
+                max-width: 150px;
+                max-height: 100px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                display: block;
+                margin: 5px auto 0;
+            }
+            
+            .no-image {
+                width: 80px;
+                height: 40px;
+                background: #f0f0f0;
+                border: 1px dashed #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #666;
+                font-size: 10px;
+                margin: 5px auto 0;
+                border-radius: 4px;
+            }
+            
+            .children-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                margin-top: 30px;
+                position: relative;
+            }
+            
+            /* Connecting lines */
+            .tree-node {
+                position: relative;
+            }
+            
+            /* Vertical line from parent to children */
+            .tree-node > .children-container:before {
+                content: '';
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            .children-container {
+                position: relative;
+            }
+            
+            /* Vertical lines from horizontal line to each child */
+            .children-container > .tree-node:before {
+                content: '';
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 15px;
+                background: #666;
+                z-index: 1;
+            }
+            
+            /* For single child, extend vertical line */
+            .children-container .tree-node:only-child:before {
+                height: 30px;
+                top: -30px;
+            }
+            
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            
+            .scroll-wrapper {
+                width: 100%;
+                height: calc(100vh - 100px);
+                overflow: auto;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                background: white;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Figma Design Tree</h1>
+        <div class="tree-container">
+    <div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Pam Health 1</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16117.png" class="node-image" alt="Pam Health 1">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1000004342</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16118.png" class="node-image" alt="Frame 1000004342">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713735</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16119.png" class="node-image" alt="Frame 1073713735">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1000004344</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16120.png" class="node-image" alt="Frame 1000004344">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>image 1</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16121.png" class="node-image" alt="image 1">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1000004346</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16122.png" class="node-image" alt="Frame 1000004346">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Dashboard</strong><br>
+      <small>GROUP</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16123.png" class="node-image" alt="Dashboard">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1000004345</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16128.png" class="node-image" alt="Frame 1000004345">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Tables</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16129.png" class="node-image" alt="Tables">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Billing</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16133.png" class="node-image" alt="Billing">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>RTL</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16136.png" class="node-image" alt="RTL">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713688</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16139.png" class="node-image" alt="Frame 1073713688">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Ellipse 31</strong><br>
+      <small>ELLIPSE</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16140.png" class="node-image" alt="Ellipse 31">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713687</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16141.png" class="node-image" alt="Frame 1073713687">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713645</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16144.png" class="node-image" alt="Frame 1073713645">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713720</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16145.png" class="node-image" alt="Frame 1073713720">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713663</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16146.png" class="node-image" alt="Frame 1073713663">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>H&P Compliance (5)</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16147.png" class="node-image" alt="H&P Compliance (5)">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Group 1000004304</strong><br>
+      <small>GROUP</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16148.png" class="node-image" alt="Group 1000004304">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16151.png" class="node-image" alt="Vector">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713721</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16152.png" class="node-image" alt="Frame 1073713721">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713660</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16153.png" class="node-image" alt="Frame 1073713660">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Was the H&P signed within 24 hours of the start time of the admission order?  </strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16154.png" class="node-image" alt="Was the H&P signed within 24 hours of the start time of the admission order?  ">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713668</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16155.png" class="node-image" alt="Frame 1073713668">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2608304</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16159.png" class="node-image" alt="Frame 2608304">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713666</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16161.png" class="node-image" alt="Frame 1073713666">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Does the history and physical contain chief complaint?  </strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16162.png" class="node-image" alt="Does the history and physical contain chief complaint?  ">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713668</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16163.png" class="node-image" alt="Frame 1073713668">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 2608304</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16167.png" class="node-image" alt="Frame 2608304">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713667</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16169.png" class="node-image" alt="Frame 1073713667">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713668</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16177.png" class="node-image" alt="Frame 1073713668">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713669</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16185.png" class="node-image" alt="Frame 1073713669">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713664</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16193.png" class="node-image" alt="Frame 1073713664">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Rectangle 3347</strong><br>
+      <small>RECTANGLE</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16200.png" class="node-image" alt="Rectangle 3347">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713686</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16201.png" class="node-image" alt="Frame 1073713686">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Search</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16202.png" class="node-image" alt="Search">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713685</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16203.png" class="node-image" alt="Frame 1073713685">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713684</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16204.png" class="node-image" alt="Frame 1073713684">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713679</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16205.png" class="node-image" alt="Frame 1073713679">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713680</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16220.png" class="node-image" alt="Frame 1073713680">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713681</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16235.png" class="node-image" alt="Frame 1073713681">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713682</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16250.png" class="node-image" alt="Frame 1073713682">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713683</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16265.png" class="node-image" alt="Frame 1073713683">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>_Button/Base</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16280.png" class="node-image" alt="_Button/Base">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713716</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16289.png" class="node-image" alt="Frame 1073713716">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713719</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16290.png" class="node-image" alt="Frame 1073713719">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713715</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16291.png" class="node-image" alt="Frame 1073713715">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Questions</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16292.png" class="node-image" alt="Questions">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713718</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16293.png" class="node-image" alt="Frame 1073713718">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713672</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16294.png" class="node-image" alt="Frame 1073713672">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713717</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16299.png" class="node-image" alt="Frame 1073713717">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713714</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16309.png" class="node-image" alt="Frame 1073713714">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713713</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16310.png" class="node-image" alt="Frame 1073713713">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Sort:</strong><br>
+      <small>TEXT</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16311.png" class="node-image" alt="Sort:">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713712</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16312.png" class="node-image" alt="Frame 1073713712">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Frame 1073713657</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16317.png" class="node-image" alt="Frame 1073713657">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>download</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16318.png" class="node-image" alt="download">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16319.png" class="node-image" alt="Vector">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16320.png" class="node-image" alt="Vector">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16321.png" class="node-image" alt="Vector">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>share-2</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16322.png" class="node-image" alt="share-2">
+  </div>
+  <div class="children-container">
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16323.png" class="node-image" alt="Vector">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16324.png" class="node-image" alt="Vector">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16325.png" class="node-image" alt="Vector">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16326.png" class="node-image" alt="Vector">
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>Vector</strong><br>
+      <small>VECTOR</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16327.png" class="node-image" alt="Vector">
+  </div>
+</div>
+  </div>
+</div>
+<div class="tree-node">
+  <div class="node-content">
+    <div class="node-info">
+      <strong>mail</strong><br>
+      <small>FRAME</small>
+    </div>
+    <img src="./figma_exports_data_ai2/834:16328.png" class="node-image" alt="mail">
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+
+        </div>
+        
+        <script>
+        // Fix horizontal connecting lines after page loads
+        window.addEventListener('load', function() {
+            const containers = document.querySelectorAll('.children-container');
+            
+            containers.forEach(container => {
+                const children = container.querySelectorAll(':scope > .tree-node');
+                
+                if (children.length > 1) {
+                    const firstChild = children[0];
+                    const lastChild = children[children.length - 1];
+                    
+                    const firstRect = firstChild.getBoundingClientRect();
+                    const lastRect = lastChild.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    const leftOffset = firstRect.left + firstRect.width/2 - containerRect.left;
+                    const rightOffset = lastRect.left + lastRect.width/2 - containerRect.left;
+                    
+                    // Create or update horizontal line
+                    const existingLine = container.querySelector('.horizontal-line');
+                    if (existingLine) {
+                        existingLine.remove();
+                    }
+                    
+                    const horizontalLine = document.createElement('div');
+                    horizontalLine.className = 'horizontal-line';
+                    horizontalLine.style.cssText = `
+                        position: absolute;
+                        top: -15px;
+                        left: ${leftOffset}px;
+                        width: ${rightOffset - leftOffset}px;
+                        height: 2px;
+                        background: #666;
+                        z-index: 1;
+                    `;
+                    
+                    container.appendChild(horizontalLine);
+                }
+            });
+        });
+        </script>
+    </body>
+    </html>
+    
